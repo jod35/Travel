@@ -1,4 +1,6 @@
 const express =require('express');
+
+//creates our deafult layout main.handlebars
 const handlebars=require('express3-handlebars').create({defaultLayout:'main'});
 
 
@@ -11,24 +13,22 @@ app.set('port',process.env.PORT ||3000);
 
 
 app.get('/',(req,res)=>{
-    res.send('Home Page')
+    res.render('home')
 });
 
 app.get('/about/',(req,res)=>{
-  res.send("ABout Page")
+  res.render("about")
 });
 
 app.use((req,res)=>{
-    res.status(400)
-    res.send("404 Not Found")
-    res.type('text/plain')
-
+    res.status(404)
+    res.render('404')
 });
 
 app.use((req,res)=>{
     res.status(500)
-    res.send("500 Internal Server Error")
-    res.type("text/plain")
+    res.render("500")
+   
 });
 
 app.listen(app.get('port'),()=>{
