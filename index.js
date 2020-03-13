@@ -6,6 +6,8 @@ const handlebars=require('express3-handlebars').create({defaultLayout:'main'});
 
 const app=express();
 
+//bring in the static files
+app.use(express.static(__dirname +'/public'));
 
 app.engine('handlebars',handlebars.engine);
 app.set('view engine','handlebars');
