@@ -3,6 +3,15 @@ const express=require('express'); //bring in expess
 const app =express(); //make an express 
 
 app.set('port',process.env.PORT||3000);
+app.get('/',(req,res)=>{
+    res.type('text/plain')
+    res.send("Home Page")
+});
+
+app.get('about/',(req,res)=>{
+    res.type('text/plain')
+    res.send("About Page")
+});
 
 app.use((req,res)=>{
     res.type('text/plain')
