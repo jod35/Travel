@@ -3,6 +3,14 @@ const express =require('express');
 //creates our deafult layout main.handlebars
 const handlebars=require('express3-handlebars').create({defaultLayout:'main'});
 
+const fortunes = [
+    "Conquer your fears or they will conquer you.",
+    "Rivers need springs.",
+    "Do not fear what you don't know.",
+    "You will have a pleasant surprise.",
+    "Whenever possible, keep it simple.",
+    ];
+
 
 const app=express();
 
@@ -19,7 +27,8 @@ app.get('/',(req,res)=>{
 });
 
 app.get('/about/',(req,res)=>{
-  res.render("about")
+  const randomTravelFortune=[Math.floor(Math.random* fortunes.length )];
+  res.render("about",{'fortune':randomTravelFortune})
 });
 
 app.use((req,res)=>{
