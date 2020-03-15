@@ -1,4 +1,5 @@
 const express =require('express');
+const fortune=require('./lib/fortunes');
 
 //creates our deafult layout main.handlebars
 const handlebars=require('express3-handlebars').create({defaultLayout:'main'});
@@ -19,7 +20,7 @@ app.use(express.static(__dirname +'/public'));
 
 app.engine('handlebars',handlebars.engine);
 app.set('view engine','handlebars');
-app.set('port',process.env.PORT ||3000);
+app.set('port',process.env.PORT ||5000);
 
 
 app.get('/',(req,res)=>{
@@ -27,8 +28,7 @@ app.get('/',(req,res)=>{
 });
 
 app.get('/about/',(req,res)=>{
-  const randomTravelFortune=[Math.floor(Math.random() * fortunes.length )];
-  res.render("about",{'fortune':randomTravelFortune}) //returns a virtua; fortune cookie
+res.render('about',{'fortune':fortune.getFortunes()}) //returns a virtua; fortune cookie
 });
 
 app.use((req,res)=>{
