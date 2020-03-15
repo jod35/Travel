@@ -27,8 +27,8 @@ app.get('/',(req,res)=>{
 });
 
 app.get('/about/',(req,res)=>{
-  const randomTravelFortune=[Math.floor(Math.random* fortunes.length )];
-  res.render("about",{'fortune':randomTravelFortune})
+  const randomTravelFortune=[Math.floor(Math.random() * fortunes.length )];
+  res.render("about",{'fortune':randomTravelFortune}) //returns a virtua; fortune cookie
 });
 
 app.use((req,res)=>{
