@@ -4,15 +4,6 @@ const fortune=require('./lib/fortunes');
 //creates our deafult layout main.handlebars
 const handlebars=require('express3-handlebars').create({defaultLayout:'main'});
 
-const fortunes = [
-    "Conquer your fears or they will conquer you.",
-    "Rivers need springs.",
-    "Do not fear what you don't know.",
-    "You will have a pleasant surprise.",
-    "Whenever possible, keep it simple.",
-    ];
-
-
 const app=express();
 
 //bring in the static files
@@ -20,7 +11,7 @@ app.use(express.static(__dirname +'/public'));
 
 app.engine('handlebars',handlebars.engine);
 app.set('view engine','handlebars');
-app.set('port',process.env.PORT ||5000);
+app.set('port',process.env.PORT ||3000);
 
 app.use((req,res,next)=>{
     res.locals.showTests=app.get('env') !== 'production' && req.query.test===1;
@@ -47,6 +38,14 @@ app.use((req,res)=>{
    
 });
 
+
+app.get('/tours/hood-river',(req,res)=>{
+    res.render('tours/hood_river')
+});
+
+app.get('/tours/request-group-rate',(req,res)=>{
+    
+});
 app.listen(app.get('port'),()=>{
     console.log("Server is running at http://localhost:" +app.get('port')+ " Press Ctrl C to Terminate");
 });
